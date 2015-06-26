@@ -128,6 +128,21 @@ function checkValues() {
 					GR = Math.round(((1 + Opacityint) * GL) + (-(Opacityint) * GU));
 					BR = Math.round(((1 + Opacityint) * BL) + (-(Opacityint) * BU));
 				}
+				if (RR < 0) {
+					RR = 0;
+				} else if (RR > 255) {
+					RR = 255;
+				}
+				if (GR < 0) {
+					GR = 0;
+				} else if (GR > 255) {
+					GR = 255;
+				}
+				if (BR < 0) {
+					BR = 0;
+				} else if (BR > 255) {
+					BR = 255;
+				}
 				resulting.innerHTML = "R: " + RR + "<br>";
 				resulting.innerHTML += "G: " + GR + "<br>";
 				resulting.innerHTML += "B: " + BR + "<br>";
