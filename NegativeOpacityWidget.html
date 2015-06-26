@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+body {
+	background-color: #141414;
+}
+
+div#app{
+	margin-left: auto;
+	margin-right: auto;
+	width: 192px;
+}
+
+div#NPDIV{
+	border-color: #800000;
+	border-size: 0.5px;
+	border-style: solid;
+	padding:10px 0px 10px 10px;
+	width: 176px;
+	background-color: #D80000;
+}
+
+div#UpperDIV{
+	border-color: #002B8A;
+	border-size: 0.5px;
+	border-style: solid;
+	padding:0px 0px 10px 10px;
+	width: 80px;
+	float: left;
+	background-color: #007BDF;
+}
+
+div#LowerDIV{
+	border-color: #005600;
+	border-size: 0.5px;
+	border-style: solid;
+	padding:0px 0px 10px 10px;
+	width: 80px;
+	float: left;
+	background-color: #1CCF1A;
+}
+
+div#OpacityDIV{
+	border-color: #B86E00;
+	border-size: 0.5px;
+	border-style: solid;
+	padding:0px 0px 10px 10px;
+	background-color: #E68A00;
+	width: 176px;
+}
+
+div#calcButton{
+	text-align: center;
+}
+
+div#results{
+	border-color: #272626;
+	border-size: 0.5px;
+	border-style: solid;
+	padding:0px 0px 10px 10px;
+	width: 176px;
+	background-color: #514F4F;
+}
+
+</style>
+<script>
+var choiceNP = 0;
+var choicesNP, RL, GL, BL, RU, GU, BU, Opacity, Opacityint, RR, GR, BR, test, resulting;
+
+function _(x) {
+	return document.getElementById(x);
+}
+
+function CheckIsNumeric(num) {
+    if (isNaN(num) == true) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function checkValuesBoundriesRGB(values) {
+	if (values >= 0 && values < 256){
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function checkChoice() {
+	choicesNP = document.getElementsByName("choices");
+	for(var i=0; i<choicesNP.length; i++) {
+		if (choicesNP[i].checked) {
+			choiceNP = choicesNP[i].value;
+		}
+	}
+	
+	if (choiceNP != 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function checkValues() {
+	resulting = _("resulting");
+	if (checkChoice() == true) {
+		RL = document.getElementById("21").value;
+		GL = document.getElementById("22").value;
+		BL = document.getElementById("23").value;
+		RU = document.getElementById("11").value;
+		GU = document.getElementById("12").value;
+		BU = document.getElementById("13").value;
+		Opacity = document.getElementById("33").value;
+		if (CheckIsNumeric(RL) && CheckIsNumeric(GL) && CheckIsNumeric(BL) && CheckIsNumeric(RU) && CheckIsNumeric(GU) && CheckIsNumeric(BU) && CheckIsNumeric(Opacity) && checkValuesBoundriesRGB(RL) && checkValuesBoundriesRGB(GL) && checkValuesBoundriesRGB(BL) && checkValuesBoundriesRGB(RU) && checkValuesBoundriesRGB(GU) && checkValuesBoundriesRGB(BU)) {
+			Opacityint = (Opacity / 100);
+			Opacityint = Opacityint * 1.0;
+			if (Opacityint >= 0.0 && Opacityint <= 1.0) {
+				if(choiceNP == "1") {
+					RR = Math.round(((1 - Opacityint) * RL) + (Opacityint * RU));
+					GR = Math.round(((1 - Opacityint) * GL) + (Opacityint * GU));
+					BR = Math.round(((1 - Opacityint) * BL) + (Opacityint * BU));
+				} else {
+					RR = Math.round(((1 + Opacityint) * RL) + (-(Opacityint) * RU));
+					GR = Math.round(((1 + Opacityint) * GL) + (-(Opacityint) * GU));
+					BR = Math.round(((1 + Opacityint) * BL) + (-(Opacityint) * BU));
+				}
+				resulting.innerHTML = "R: " + RR + "<br>";
+				resulting.innerHTML += "G: " + GR + "<br>";
+				resulting.innerHTML += "B: " + BR + "<br>";
+			} else {
+				resulting.innerHTML = "<p> Check your opacity! </p>";
+			}
+		} else {
+			resulting.innerHTML = "<p> Check your numbers! </p>";
+		}
+	} else {
+		resulting.innerHTML = "<p> Please make a choice between Positive or Negative Opacity! </p>";
+	}
+}
+</script>
+</head>
+<body>
+
+<div id="app">
+	<div id='NPDIV'>
+		<input type='radio' name='choices' value='1' style='font-color: #FFFFFF'> <font color="white"> Positive Opacity </font> <br>
+		<input type='radio' name='choices' value='2' style='font-color: #FFFFFF'> <font color="white"> Negative Opacity </font> <br>
+	</div>
+	<div id="InputColors">
+		<div id="UpperDIV">
+			<p style="font-size:14px; margin:1px; padding:3px 0px 5px 0px;"> <font color="white"> Upper Layer </font> </p>
+			<font color="white"> R: </font> <input type="text" name="RedUp" id="11" style='width: 30px'><br>
+			<font color="white"> G: </font> <input type="text" name="GreenUp" id="12" style='width: 30px'><br>
+			<font color="white"> B: </font> <input type="text" name="BlueUp" id="13" style='width: 30px'><br>
+		</div>
+		<div id="LowerDIV">
+			<p style="font-size:14px; margin:1px; padding:3px 0px 5px 0px;"> <font color="white"> Lower Layer </font> </p>
+			<font color="white"> R: </font> <input type="text" name="RedLo" id="21" style='width: 30px'><br>
+			<font color="white"> G: </font> <input type="text" name="GreenLo" id="22" style='width: 30px'><br>
+			<font color="white"> B: </font> <input type="text" name="BlueLo" id="23" style='width: 30px'><br>
+		</div>
+		<br></br>
+		<br></br>
+		<br></br>
+		<div id="OpacityDIV">
+			<p style="font-size:18px; margin:1px; padding:3px 0px 5px 0px; text-align: center;"> Opacity </p>
+			<input type="text" name="OpacityUp" id="33" style="width: 30px; font-size:13px;"> % <p style="text-align: right; margin:1px; padding:0px 5px 0px 0px; float:right;"> 100% </p>
+			<p> </p>
+			<div id="calcButton">
+				<input type="button" value="Calculate" style="font-size:15px;" onclick="checkValues()"/>
+			</div>
+		</div>
+	</div>
+
+	<div id="results">
+		<p style="font-size:18px; margin:1px; padding:3px 0px 5px 0px; text-align: center;"> Result </p>
+		<div id="resulting">
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

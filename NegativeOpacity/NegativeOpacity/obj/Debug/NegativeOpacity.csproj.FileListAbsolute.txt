@@ -1,0 +1,9 @@
+c:\users\pcc\documents\visual studio 2012\Projects\NegativeOpacity\NegativeOpacity\bin\Debug\NegativeOpacity.exe.config
+c:\users\pcc\documents\visual studio 2012\Projects\NegativeOpacity\NegativeOpacity\bin\Debug\NegativeOpacity.exe
+c:\users\pcc\documents\visual studio 2012\Projects\NegativeOpacity\NegativeOpacity\bin\Debug\NegativeOpacity.pdb
+c:\users\pcc\documents\visual studio 2012\Projects\NegativeOpacity\NegativeOpacity\obj\Debug\NegativeOpacity.csprojResolveAssemblyReference.cache
+c:\users\pcc\documents\visual studio 2012\Projects\NegativeOpacity\NegativeOpacity\obj\Debug\NegativeOpacity.Properties.Resources.resources
+c:\users\pcc\documents\visual studio 2012\Projects\NegativeOpacity\NegativeOpacity\obj\Debug\NegativeOpacity.csproj.GenerateResource.Cache
+c:\users\pcc\documents\visual studio 2012\Projects\NegativeOpacity\NegativeOpacity\obj\Debug\NegativeOpacity.exe
+c:\users\pcc\documents\visual studio 2012\Projects\NegativeOpacity\NegativeOpacity\obj\Debug\NegativeOpacity.pdb
+c:\users\pcc\documents\visual studio 2012\Projects\NegativeOpacity\NegativeOpacity\obj\Debug\NegativeOpacity.Main.resources
